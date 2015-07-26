@@ -10,10 +10,47 @@
 "
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
-
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
+""" VUNDLE - ADDED
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+ " The following are examples of different formats supported.
+ " Keep Plugin commands between vundle#begin/end.
+ " plugin on GitHub repo
+ """Plugin 'tpope/vim-fugitive'
+Plugin 'xolox/vim-misc'
+Plugin 'vim-scripts/greplace.vim'
+Plugin 'xolox/vim-session'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Yggdroot/indentLine'
+Plugin 'Raimondi/delimitMate'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'tpope/vim-commentary'
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" plugin from http://vim-scripts.org/vim/scripts.html
+" "Plugin 'L9'
+" Git plugin not hosted on GitHub
+" "Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" "Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" " Avoid a name conflict with L9
+" "Plugin 'user/L9', {'name': 'newL9'}
+"
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
@@ -24,6 +61,24 @@ filetype indent plugin on
 syntax on
 
 colorscheme desert
+
+"YouCompleteMe
+let g:EclimCompletionMethod = 'omnifunc'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+"NerdTree
+"cd ~/ws
+:set guioptions-=L
+nmap <F2> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen=1
+
+""NerdTreeTabs
+let g:nerdtree_tabs_smart_startup=2
+let g:nerdtree_tabs_focus_on_files=1
+let g:nerdtree_tabs_open_on_console_startup=1
 "------------------------------------------------------------
 " Must have options {{{1
 "
